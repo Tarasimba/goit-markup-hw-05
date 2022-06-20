@@ -90,6 +90,9 @@ img {
 .site-nav {
   display: flex;
 }
+.site-nav > .item {
+  position: relative;
+}
 
 .site-nav > .item:not(:last-child) {
   margin-right: 50px;
@@ -97,15 +100,28 @@ img {
 
 .contact-nav .link,
 .site-nav .link {
-  display: block;
   padding-top: 32px;
   padding-bottom: 32px;
-
-  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+}
+
+.site-nav .link {
+  display: inline-block;
+  color: var(--primary-text-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-nav .link {
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--title-text-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav .link:hover,
@@ -119,18 +135,24 @@ img {
   color: var(--accent-color);
 }
 
+.site-nav .link.current::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
 .contact-nav {
   display: flex;
 }
 
 .contact-nav > .item:not(:last-child) {
   margin-right: 50px;
-}
-
-.contact-nav .link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--title-text-color);
 }
 
 .contact-icon {
@@ -287,6 +309,8 @@ img {
   line-height: 1.19;
 }
 
+/* Соціальні мережі */
+
 .icon-social {
   display: flex;
   margin-left: auto;
@@ -305,12 +329,18 @@ img {
   justify-content: center;
   align-items: center;
 
-  color: var(--primary-icon-color);
   border-radius: 50%;
 }
 
-.social-link:hover,
-.social-link:focus {
+.card-content .social-link {
+  color: var(--primary-icon-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-content .social-link:hover,
+.card-content .social-link:focus {
   background-color: var(--accent-color);
   color: var(--primary-bg-color);
 }
@@ -329,11 +359,11 @@ img {
   margin-top: 0;
   margin-bottom: 50px;
   padding: 0;
+
   font-weight: 700;
   font-size: 36px;
   line-height: 42px;
 }
-
 
 .client-item > .link {
   display: flex;
@@ -348,7 +378,8 @@ img {
 
 .client-item > .link:hover,
 .client-item > .link:focus {
-  border-color: var(--accent-color); color: var(--accent-color);
+  color: var(--accent-color);
+  outline: 1px solid var(--accent-color);
 }
 
 .client-items {
@@ -408,12 +439,16 @@ footer {
   color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
   line-height: 1.71;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address-items .link:hover,
 .address-items .link:focus {
   color: var(--accent-color);
 }
+
+/* Приєднайтесь */
 
 .social-title {
   margin-top: 0;
@@ -430,6 +465,8 @@ footer {
 .social .social-link {
   background: rgba(255, 255, 255, 0.1);
   color: var(--primary-bg-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social .social-link:hover,
@@ -439,45 +476,30 @@ footer {
 
 /* Кнопка */
 .btn {
-  padding: 10px 32px;
-
-  background-color: var(--accent-color);
-  color: var(--primary-bg-color);
   cursor: pointer;
   border: none;
   border-radius: 4px;
 }
 
 .btn.primari {
+  padding: 10px 32px;
+
   font-family: inherit;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.88;
   letter-spacing: 0.06em;
 
+  color: var(--primary-bg-color);
+  background-color: var(--accent-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn.primari:hover,
 .btn.primari:focus {
   background-color: #188ce8;
-}
-
-.btn.secondary {
-  padding: 6px 22px;
-
-  background-color: var(--primary-btn-color);
-  color: var(--primary-text-color);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.62;
-}
-
-.btn.secondary:hover,
-.btn.secondary:focus,
-.btn.secondary:active {
-  background-color: var(--accent-color);
-  color: var(--primary-bg-color);
 }
 
 /* Фільтер */
@@ -494,8 +516,23 @@ footer {
   margin-right: 8px;
 }
 
+.work-filter .btn.secondary {
+  padding: 6px 22px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.62;
+
+  background-color: var(--primary-btn-color);
+  color: var(--primary-text-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .work-filter .btn.secondary:hover,
 .work-filter .btn.secondary:focus {
+  background-color: var(--accent-color);
+  color: var(--primary-bg-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
 }
@@ -508,6 +545,38 @@ footer {
 
   margin-top: calc(-1 * var(--card-set-gap));
   margin-left: calc(-1 * var(--card-set-gap));
+}
+
+.work .card-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 63px 24px;
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(101%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work .link:hover .overlay,
+.work .link:focus .overlay {
+  transform: translateY(0);
+}
+
+.card-thumb .pre-text {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.56;
+
+  color: var(--primary-bg-color);
 }
 
 .work .card-content {
@@ -526,6 +595,8 @@ footer {
 
 .work .link.decoration {
   display: inline-block;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .work .link.decoration:hover,
@@ -536,19 +607,77 @@ footer {
 .link .title {
   margin-top: 0;
   margin-bottom: 0;
-
-  color: var(--primary-text-color);
   font-weight: 700;
   font-size: 18px;
   line-height: 2;
   letter-spacing: 0.06em;
+
+  color: var(--primary-text-color);
 }
 
 .link .text {
   margin-top: 0;
   margin-bottom: 0;
-
-  color: var(--title-text-color);
   font-size: 16px;
   line-height: 1.88;
+
+  color: var(--title-text-color);
+}
+
+/* Модальне вікно */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.4, 0.1);
+  opacity: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 528px;
+  min-height: 581px;
+
+  background-color: var(--primary-bg-color);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius);
+
+  transform: translate(-50%, -50%) scale(1, 1);
+  opacity: 1;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-closed {
+  position: absolute;
+  display: inline-flex;
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+
+  cursor: pointer;
+  background-color: var(--primary-bg-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
 }

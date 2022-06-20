@@ -379,7 +379,7 @@ img {
 .client-item > .link:hover,
 .client-item > .link:focus {
   color: var(--accent-color);
-  outline: 1px solid var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .client-items {
@@ -387,6 +387,25 @@ img {
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--card-set-gap));
   margin-left: calc(-1 * var(--card-set-gap));
+}
+
+.img-desc1{
+  width: 370px;
+  height: 70px;
+  background: rgba(47, 48, 58, 0.8);
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #FFFFFF;
 }
 
 .client-items > .client-item {
